@@ -1,6 +1,7 @@
 version: 2
 updates:
-  - package-ecosystem: "pip"
+  # pip не используется: Dependabot не умеет разбирать зависимость -e ../project-b (путь вне репозитория)
+  - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"

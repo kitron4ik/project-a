@@ -21,9 +21,10 @@ jobs:
           submodules: recursive
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      # actions/checkout получает подмодуль без полной истории, поэтому вместо --merge используется --remote
       - name: Update submodule to latest main
         run: |
-          git submodule update --remote --merge libs/project-b
+          git submodule update --remote libs/project-b
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
