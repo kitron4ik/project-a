@@ -1,4 +1,0 @@
-[submodule "libs/project-b"]
-	path = libs/project-b
-	url = https://github.com/kitron4ik/project-b.git
-	branch = main
