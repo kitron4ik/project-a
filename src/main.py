@@ -2,7 +2,7 @@
 from datetime import datetime, timedelta
 
 # функции библиотеки project-b-utils, установленной как пакет
-from project_b_utils import get_current_date, reverse_string
+from project_b_utils import get_current_date, reverse_string, __version__
 
 from models import Task, Status
 from utils import filter_by_status, progress_percent
@@ -20,6 +20,7 @@ def build_demo_tasks() -> list[Task]:
 def main() -> None:
     tasks = build_demo_tasks()
     print("=== Task Manager ===")
+    print(f"Версия библиотеки project-b-utils: {__version__}")
     print(f"Дата: {get_current_date()}")
     print(f"Заголовок наоборот: {reverse_string('Task Manager')}")
     for task in tasks:
