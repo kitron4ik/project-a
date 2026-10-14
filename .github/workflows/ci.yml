@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        # в CI нет соседнего каталога ../project-b, поэтому библиотека ставится из подмодуля
+        run: |
+          pip install -e libs/project-b
+          pip install flask pytest
+
+      - name: Run tests
+        run: pytest tests/ -v

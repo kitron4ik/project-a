@@ -1,0 +1,38 @@
+name: Update submodule
+
+# Запускается по событию из репозитория project-b (repository_dispatch),
+# по расписанию раз в сутки и вручную
+on:
+  repository_dispatch:
+    types: [ update-submodule ]
+  schedule:
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update submodule to latest main
+        run: |
+          git submodule update --remote --merge libs/project-b
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Commit and push if changed
+        run: |
+          if ! git diff --quiet; then
+            git add libs/project-b
+            git commit -m "chore: автоматическое обновление подмодуля project-b"
+            git push
+          else
+            echo "Подмодуль уже актуален"
+          fi
