@@ -13,8 +13,8 @@ pip install -e .
 
 | Модуль | Функции |
 |---|---|
-| `date_utils` | `get_current_date`, `format_date`, `days_between`, `add_working_days` |
-| `string_utils` | `reverse_string`, `capitalize_words`, `slugify`, `truncate` |
+| `date_utils` | `get_current_date`, `format_date`, `days_between`, `add_working_days`, `is_weekend`, `start_of_month` |
+| `string_utils` | `reverse_string`, `capitalize_words`, `slugify`, `truncate`, `count_words`, `is_palindrome` |
 
 ## Запуск тестов
 
