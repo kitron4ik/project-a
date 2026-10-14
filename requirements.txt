@@ -1,1 +1,2 @@
+-e ../project-b
 pytest>=8.0
